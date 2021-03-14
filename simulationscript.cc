@@ -133,8 +133,7 @@ int main(int argc, char *argv[])
         BulkSendHelper tcpClient{"ns3::TcpSocketFactory", InetSocketAddress(remoteHostAddr, dlPort)};
         tcpClient.SetAttribute("MaxBytes", UintegerValue(100000));
         tcpClient.SetAttribute("SendSize", UintegerValue(10));
-        tcpClient.SetAttribute("Remote", AddressValue(
-                                             InetSocketAddress(ueIpIfaces.GetAddress(u), dlPort)));
+        tcpClient.SetAttribute("Remote", AddressValue(InetSocketAddress(ueIpIfaces.GetAddress(u), dlPort)));
         clientApps.Add(tcpClient.Install(remoteHost));
 
         // Uplink UDP
@@ -152,8 +151,7 @@ int main(int argc, char *argv[])
         BulkSendHelper tcpClientUl{"ns3::TcpSocketFactory", InetSocketAddress(remoteHostAddr, ulPort)};
         tcpClientUl.SetAttribute("MaxBytes", UintegerValue(100000));
         tcpClientUl.SetAttribute("SendSize", UintegerValue(10));
-        tcpClientUl.SetAttribute("Remote", AddressValue(
-                                               InetSocketAddress(ueIpIfaces.GetAddress(u), ulPort)));
+        tcpClientUl.SetAttribute("Remote", AddressValue(InetSocketAddress(ueIpIfaces.GetAddress(u), ulPort)));
         clientApps.Add(tcpClientUl.Install(remoteHost));
 
         // Inter-UE UDP
@@ -171,8 +169,7 @@ int main(int argc, char *argv[])
         BulkSendHelper tcpClientOther{"ns3::TcpSocketFactory", InetSocketAddress(remoteHostAddr, otherPort)};
         tcpClientOther.SetAttribute("MaxBytes", UintegerValue(100000));
         tcpClientOther.SetAttribute("SendSize", UintegerValue(10));
-        tcpClientOther.SetAttribute("Remote", AddressValue(
-                                                  InetSocketAddress(ueIpIfaces.GetAddress(u), otherPort)));
+        tcpClientOther.SetAttribute("Remote", AddressValue(InetSocketAddress(ueIpIfaces.GetAddress(u), otherPort)));
         clientApps.Add(client.Install(ueNodes.Get((u + 1) % 2))); //Number of node pairs = 2
     }
 
